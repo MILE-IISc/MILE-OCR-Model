@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mile.ee.iisc.ernet.in/schemas/ocr_output"
+  xmlns="http://mile.ee.iisc.ernet.in/schemas/ocr_output" elementFormDefault="qualified"
+  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" jaxb:extensionBindingPrefixes="xjc"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="1.0">
+
+  <xs:annotation>
+    <xs:appinfo>
+      <jaxb:globalBindings generateIsSetMethod="true">
+        <jaxb:javaType name="int" xmlType="xs:positiveInteger" 
+          printMethod="javax.xml.bind.DatatypeConverter.printInt"
+          parseMethod="javax.xml.bind.DatatypeConverter.parseInt" />
+      </jaxb:globalBindings>
+    </xs:appinfo>
+  </xs:annotation>
+
+  <xs:element name="page" type="pageType" />
+
+  <xs:complexType name="pageType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="OcrPage" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="userActivityMetaData" type="userActivityMetaDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="block" type="blockType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="skew" type="xs:double" default="0" />
+    <xs:attribute name="labels" type="xs:string" />
+    <xs:attribute name="BookCode" type="xs:string" />
+    <xs:attribute name="PageNumber" type="xs:string" />
+    <xs:attribute name="ImageLoc" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="userActivityMetaDataType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="UserActivityMetaData" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="marginsDetected" type="userActivityLogType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="marginsReviewed" type="userActivityLogType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ocrRun" type="userActivityLogType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="blocksDetected" type="userActivityLogType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="blocksReviewed" type="userActivityLogType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="linesReviewed" type="userActivityLogType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="wordCorrection" type="wordCorrectionLogType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="proofReading" type="userActivityLogType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="ebookAnnotations" type="userActivityLogType" minOccurs="0" maxOccurs="unbounded" />    
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="userActivityLogType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="UserActivityLog" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:attribute name="startDateTime" type="xs:string" default="" />
+    <xs:attribute name="endDateTime" type="xs:string" default="" />
+    <xs:attribute name="person" type="xs:string" />
+    <xs:attribute name="edits" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="wordCorrectionLogType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="WordCorrectionLog" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="userActivityLogType">
+        <xs:attribute name="numSuspiciousWords" type="xs:int" default="0" />
+        <xs:attribute name="numWordsReveiwed" type="xs:int" default="0" />
+        <xs:attribute name="numCorrectPredictionsByTesseract" type="xs:int" default="0" />
+        <xs:attribute name="numCorrectPredictionsByLipiGnani" type="xs:int" default="0" />
+        <xs:attribute name="numEditedByUser" type="xs:int" default="0" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rectangleType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="OcrRectangle" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:attribute name="rowStart" type="xs:positiveInteger" />
+    <xs:attribute name="rowEnd" type="xs:positiveInteger" />
+    <xs:attribute name="colStart" type="xs:positiveInteger" />
+    <xs:attribute name="colEnd" type="xs:positiveInteger" />
+  </xs:complexType>
+
+  <xs:complexType name="blockType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="OcrBlock" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="rectangleType">
+        <xs:sequence>
+          <xs:element name="line" type="lineType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="type" use="required">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="Text|Image" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="BlockNumber" type="xs:int" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="lineType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="OcrLine" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="rectangleType">
+        <xs:sequence>
+          <xs:element name="userActivityMetaData" type="userActivityMetaDataType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="word" type="wordType" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="LineNumber" type="xs:int" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="wordType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="OcrWord" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="rectangleType">
+        <xs:sequence>
+          <xs:element name="symbol" type="symbolType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="unicode" type="xs:string" use="required" />
+        <xs:attribute name="WordNumber" type="xs:int" />
+        <xs:attribute name="doubtfulRecognition" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="symbolType">
+    <xs:annotation>
+      <xs:appinfo>
+        <jaxb:class name="OcrSymbol" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="rectangleType">
+        <xs:attribute name="className" type="xs:string" use="required" />
+        <xs:attribute name="classGroup" type="xs:string" use="required" />
+        <xs:attribute name="SymbolNumber" type="xs:int" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

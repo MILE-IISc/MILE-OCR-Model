@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://purl.org/dc/elements/1.1/"
+	xmlns="http://purl.org/dc/elements/1.1/" elementFormDefault="qualified" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="1.0">
+
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2001/03/xml.xsd" />
+
+	<xs:element name="identifier" type="dcmesType" />
+	<xs:element name="title" type="dcmesType" />
+	<xs:element name="language" type="dcmesType" />
+	<xs:element name="creator" type="dcmesType" />
+	<xs:element name="contributor" type="dcmesType" />
+	<xs:element name="subject" type="dcmesType" />
+
+	<xs:complexType name="dcmesType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jaxb:class name="DcmesMetadata" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="dir" type="xs:string" use="optional" />
+				<xs:attribute name="id" type="xs:ID" use="optional" />
+				<xs:attribute ref="xml:lang" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+</xs:schema>

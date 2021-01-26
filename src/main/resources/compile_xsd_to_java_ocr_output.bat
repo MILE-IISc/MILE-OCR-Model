@@ -1,0 +1,1 @@
+xjc -p org.iisc.mile.ocr.model ocr_output.xsd -d ../java -extension -npa

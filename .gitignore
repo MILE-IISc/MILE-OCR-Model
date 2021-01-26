@@ -1,0 +1,8 @@
+/target/
+/src/test/resources/test_output.xml
+._*
+/.idea/
+/OCR_Model.iml
+.classpath
+.project
+.settings/

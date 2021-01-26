@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://mile.ee.iisc.ernet.in/schemas/ocr_output" skew="2.5">
+  <block rowStart="458" rowEnd="593" colStart="476" colEnd="926" type="text">
+	<line rowStart="460" rowEnd="587" >
+      <word colStart="485" colEnd="915" unicode="ಅಣ್ಣಪ್ಪದೈವ">
+        <akshara unicode="ಅ">
+          <symbol rowStart="479" rowEnd="540" colStart="485" colEnd="556" recognizedClass="a"/>
+        </akshara>
+        <akshara unicode="ಣ್ಣ">
+          <symbol rowStart="481" rowEnd="540" colStart="564" colEnd="640" recognizedClass="Na"/>
+          <symbol rowStart="542" rowEnd="580" colStart="618" colEnd="666" recognizedClass="NOttu"/>
+        </akshara>
+        <akshara unicode="ಪ್ಪ">
+          <symbol rowStart="463" rowEnd="540" colStart="651" colEnd="720" recognizedClass="pa"/>
+          <symbol rowStart="541" rowEnd="570" colStart="695" colEnd="740" recognizedClass="pOttu"/>
+        </akshara>
+        <akshara unicode="ದೈ">
+          <symbol rowStart="460" rowEnd="541" colStart="728" colEnd="798" recognizedClass="_de"/>
+          <symbol rowStart="526" rowEnd="587" colStart="796" colEnd="842" recognizedClass="aiMatra"/>
+        </akshara>
+        <akshara unicode="ವ">
+          <symbol rowStart="463" colStart="542" rowEnd="843" colEnd="915" recognizedClass="va"/>
+        </akshara>
+	  </word>
+	</line>
+  </block>
+  <block rowStart="677" rowEnd="884" colStart="68" colEnd="1317" type="text">
+	<line rowStart="686" rowEnd="734" >
+      <word colStart="77" colEnd="232" unicode="ಕೊರಗರ">
+	  </word>
+      <word colStart="268" colEnd="430" unicode="ದೇರೆಯದು">
+	  </word>
+      <word colStart="467" colEnd="614" unicode="ಕುಡುಮದ">
+	  </word>
+      <word colStart="650" colEnd="786" unicode="ಅಡವಿಯ">
+	  </word>
+      <word colStart="822" colEnd="917" unicode="ನಡುವೆ">
+	  </word>
+      <word colStart="954" colEnd="1125" unicode="ಒಂಟಿಯಾಗಿ">
+	  </word>
+      <word colStart="1162" colEnd="1308" unicode="ಬಾಳುತ್ತಿದ್ದ">
+	  </word>
+	</line>
+  </block>
+  <block rowStart="900" rowEnd="1822" colStart="252" colEnd="1210" type="image">
+  </block>
+  <block rowStart="1906" rowEnd="2102" colStart="76" colEnd="1325" type="text">
+  </block>
+</page>
