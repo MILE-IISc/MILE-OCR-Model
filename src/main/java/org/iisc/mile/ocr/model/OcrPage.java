@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="imageData" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="block" type="{http://mile.ee.iisc.ernet.in/schemas/ocr_output}blockType" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attribute name="skew" type="{http://www.w3.org/2001/XMLSchema}double" default="0" /&gt;
+ *       &lt;attribute name="rotationAngle" type="{http://www.w3.org/2001/XMLSchema}double" default="0" /&gt;
  *       &lt;attribute name="labels" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -53,7 +53,7 @@ public class OcrPage {
     @XmlElement(namespace = "http://mile.ee.iisc.ernet.in/schemas/ocr_output")
     protected List<OcrBlock> block;
     @XmlAttribute
-    protected Double skew;
+    protected Double rotationAngle;
     @XmlAttribute
     protected String labels;
     @XmlElement
@@ -99,39 +99,39 @@ public class OcrPage {
     }
 
     /**
-     * Gets the value of the skew property.
+     * Gets the value of the rotationAngle property.
      * 
      * @return
      *     possible object is
      *     {@link Double }
      *     
      */
-    public double getSkew() {
-        if (skew == null) {
+    public double getRotationAngle() {
+        if (rotationAngle == null) {
             return  0.0D;
         } else {
-            return skew;
+            return rotationAngle;
         }
     }
 
     /**
-     * Sets the value of the skew property.
+     * Sets the value of the rotationAngle property.
      * 
      * @param value
      *     allowed object is
      *     {@link Double }
      *     
      */
-    public void setSkew(double value) {
-        this.skew = value;
+    public void setRotationAngle(double value) {
+        this.rotationAngle = value;
     }
 
-    public boolean isSetSkew() {
-        return (this.skew!= null);
+    public boolean isSetRotationAngle() {
+        return (this.rotationAngle!= null);
     }
 
-    public void unsetSkew() {
-        this.skew = null;
+    public void unsetRotationAngle() {
+        this.rotationAngle = null;
     }
 
     /**

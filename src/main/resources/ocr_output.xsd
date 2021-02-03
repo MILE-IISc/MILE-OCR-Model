@@ -26,7 +26,7 @@
       <xs:element name="userActivityMetaData" type="userActivityMetaDataType" minOccurs="0" maxOccurs="1" />
       <xs:element name="block" type="blockType" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-    <xs:attribute name="skew" type="xs:double" default="0" />
+    <xs:attribute name="rotationAngle" type="xs:double" default="0" />
     <xs:attribute name="labels" type="xs:string" />
     <xs:attribute name="BookCode" type="xs:string" />
     <xs:attribute name="PageNumber" type="xs:string" />

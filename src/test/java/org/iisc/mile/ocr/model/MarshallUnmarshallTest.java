@@ -20,7 +20,7 @@ public class MarshallUnmarshallTest {
 	public void testMarshall() throws JAXBException {
 		// <page skew="2.5" BookCode="0165" PageNumber="3">
 		OcrPage ocrPage = new OcrPage();
-		ocrPage.setSkew(2.5);
+		ocrPage.setRotationAngle(2.5);
 		OcrBlock ocrBlock = new OcrBlock();
 		// <block rowStart="458" rowEnd="593" colStart="476" colEnd="926" type="text">
 		ocrBlock.setRowStart(458);
@@ -125,7 +125,7 @@ public class MarshallUnmarshallTest {
 		assertTrue(object != null);
 		OcrPage ocrPage = ((JAXBElement<OcrPage>) object).getValue();
 		assertTrue(ocrPage != null);
-		assertTrue(new Double(2.5).compareTo(ocrPage.getSkew()) == 0);
+		assertTrue(new Double(2.5).compareTo(ocrPage.getRotationAngle()) == 0);
 		assertTrue(ocrPage.getBlock() != null);
 		ArrayList<OcrBlock> ocrBlocks = (ArrayList<OcrBlock>) ocrPage.getBlock();
 		assertEquals(4, ocrBlocks.size());
